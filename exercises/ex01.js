@@ -7,12 +7,12 @@ Create a function named sumLargestNumbers that will receive an array of numbers 
 */
 
 const sumLargestNumbers = function (data) {
-  return 11;
+  if (data.length < 2) {
+    return 0;
+  }
+  data.sort((a, b) => b - a); // just .sort().reverse() sorts by string and not value.
+  return data[0] + data[1];
 };
-
-// console.log(sumLargestNumbers([1, 10])); // 11
-// console.log(sumLargestNumbers([1, 2, 3])); // 5
-// console.log(sumLargestNumbers([10, 4, 34, 6, 92, 2])); // 126
 
 sumLargestNumbers([1, 9, 1]);
 
