@@ -23,8 +23,28 @@ Create a function named squareCode that will receive a message, and return the s
 */
 
 const squareCode = function (message) {
-  // Put your solution here
+  const cleanedMessage = message.replace(/ /g, '');
+  const squareSize = Math.ceil(Math.sqrt(cleanedMessage.length));
+  let result = '';
+
+  // collects 
+  for (let col = 0; col < squareSize; col++) {
+    for (let row = 0; row < squareSize; row++) {
+      const charIndex = row * squareSize + col;
+      if (charIndex < cleanedMessage.length) {
+        result += cleanedMessage[charIndex];
+      }
+    }
+    result += ' ';
+  }
+
+  return result.trim();
 };
+
+/*
+  Time Complexity: O(n)
+  Space Complexity: O(n)
+*/
 
 console.log(squareCode("chill out")); // clu hlt io
 console.log(squareCode("feed the dog")); // fto ehg ee dd

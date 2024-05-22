@@ -65,3 +65,46 @@ Instruction
 Create a function generateBoard which will return a nested array representing the board, containing the location of two queens.
 Create a function called queenThreat that will indicate whether or not the two queens are positioned so that they attack each other.
 */
+
+const generateBoard = function(whiteQueen, blackQueen) {
+  const board = Array(8).fill(0).map(() => Array(8).fill(0));
+  board[whiteQueen[0]][whiteQueen[1]] = 1;
+  board[blackQueen[0]][blackQueen[1]] = 1;
+  return board;
+};
+/*
+  Time Complexity: O(1)
+  Space Complexity: O(1)
+*/
+
+const queenThreat = function(board) {
+  // Find the positions of the two queens
+  const queens = [];
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      if (board[i][j] === 1) {
+        queens.push([i, j]);
+      }
+    }
+  }
+
+  const [q1, q2] = queens;
+  // Check if they are in the same row
+  if (q1[0] === q2[0]) return true;
+  // Check if they are in the same column
+  if (q1[1] === q2[1]) return true;
+  // Check if they are in the same diagonal
+  if (Math.abs(q1[0] - q2[0]) === Math.abs(q1[1] - q2[1])) return true;
+
+  // If none of the conditions are met, return false
+  return false;
+};
+/*
+  Time Complexity: O(1)
+  Space Complexity: O(1)
+*/
+
+module.exports = {
+  generateBoard,
+  queenThreat
+};
