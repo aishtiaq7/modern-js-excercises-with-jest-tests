@@ -7,8 +7,21 @@ Create a function named conditionalSum that will be given an array of numbers an
 */
 
 const conditionalSum = function (values, condition) {
-  // Your code here
+  let sum = 0;
+  for (const value of values) {
+    if (condition === "even" && value % 2 === 0) {
+      sum += value;
+    } else if (condition === "odd" && value % 2 !== 0) {
+      sum += value;
+    }
+  }
+  return sum;
 };
+
+/*
+  Time Complexity: O(n)
+  Space Complexity: O(1)
+*/
 
 console.log(conditionalSum([1, 2, 3, 4, 5], "even")); // 6
 console.log(conditionalSum([1, 2, 3, 4, 5], "odd")); // 9
