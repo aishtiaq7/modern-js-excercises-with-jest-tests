@@ -9,8 +9,18 @@ Create a function named camelCase that will convert a string to camel case, and 
 */
 
 const camelCase = function (input) {
-  // Your code here
+  let words = input.split(' ');
+  for (let i = 1; i < words.length; i++) {
+    words[i] = words[i][0].toUpperCase() + words[i].slice(1);
+  }
+  return words.join('');
 };
+
+/*
+  Time Complexity: O(n)
+  Space Complexity: O(1)
+
+*/
 
 console.log(camelCase("this is a string")); // thisIsAString
 console.log(camelCase("loopy cornerstone")); //loopyCornerstone

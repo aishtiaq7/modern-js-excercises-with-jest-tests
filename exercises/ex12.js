@@ -21,8 +21,29 @@ This one is a doozy! We might want to start by creating a helper function called
 */
 
 const chooseRecipe = function (bakeryA, bakeryB, recipes) {
-  // Code here!
+  const ingredientCheck = function (bakery, ingredients) {
+    for (const ingredient of ingredients) {
+      if (bakery.includes(ingredient)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  for (const recipe of recipes) {
+    const [ingredient1, ingredient2] = recipe.ingredients;
+    
+    //check if a recipe can be made with one ingredient from Bakery A and one ingredient from Bakery B. Since each recipe has exactly two ingredients, we need to verify both possible combinations:
+    if (ingredientCheck(bakeryA, [ingredient1]) && ingredientCheck(bakeryB, [ingredient2]) ||
+        ingredientCheck(bakeryA, [ingredient2]) && ingredientCheck(bakeryB, [ingredient1])) {
+      return recipe.name;
+    }
+  }
 };
+/*
+    Time Complexity: O(n * m), where n is the number of recipes and m is the number of ingredients in each recipe
+    Space Complexity: O(1)
+*/
 
 let bakeryA = ["saffron", "eggs", "tomato paste", "coconut", "custard"];
 let bakeryB = ["milk", "butter", "cream cheese"];
