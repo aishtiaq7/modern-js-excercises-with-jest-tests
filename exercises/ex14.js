@@ -23,8 +23,39 @@ Penny (1¢)
 */
 
 const calculateChange = function (total, cash) {
-  // Your code here
+  const change = cash - total;
+  const denominations = [
+    { name: "twentyDollar", value: 2000 },
+    { name: "tenDollar", value: 1000 },
+    { name: "fiveDollar", value: 500 },
+    { name: "toonie", value: 200 }, 
+    { name: "loonie", value: 100 }, 
+    { name: "quarter", value: 25 },
+    { name: "dime", value: 10 },
+    { name: "nickel", value: 5 },
+    { name: "penny", value: 1 }
+  ];
+
+  let remainingChange = change;
+  const result = {};
+
+  for (const denomination of denominations) {
+    if (remainingChange >= denomination.value) {
+      const count = Math.floor(remainingChange / denomination.value);
+      if (count > 0) {
+        result[denomination.name] = count;
+        remainingChange -= count * denomination.value;
+      }
+    }
+  }
+
+  return result;
 };
+
+/*
+  Time Complexity: O(1)  the number of iterations is fixed and does not depend on the size of the input, the time complexity is O(1) (constant time).
+  Space Complexity: O(1) as the amount of additional space used does not grow with the size of the input.
+*/
 
 console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 }
 console.log(calculateChange(2623, 4000)); // { tenDollar: 1, twoDollar: 1, oneDollar: 1, quarter: 3, penny: 2 }

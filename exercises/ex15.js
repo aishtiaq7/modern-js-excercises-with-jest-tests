@@ -9,9 +9,16 @@ Create a function named organizeInstructors that will receive an array of instru
 */
 
 const organizeInstructors = function (instructors) {
-  // Put your solution here
+  const organized = {};
+  for (const instructor of instructors) {
+    if (!organized[instructor.course]) {
+      organized[instructor.course] = [];
+    }
+    organized[instructor.course].push(instructor.name);
+  }
+  console.log('organized', organized);
+  return organized;
 };
-
 console.log(
   organizeInstructors([
     { name: "Samuel", course: "iOS" },

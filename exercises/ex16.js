@@ -16,8 +16,50 @@ For more information on casing styles, read Wikipedia's Special Case Styles for 
 */
 
 const makeCaze = function (input, caze) {
-  // Put your solution here
+  const applyCasing = (input, casing) => {
+    switch (casing) {
+      case "camel":
+        return input.split(' ').map((word, index) => index === 0 ? word : word[0].toUpperCase() + word.slice(1)).join('');
+      case "pascal":
+        return input.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join('');
+      case "snake":
+        return input.split(' ').join('_');
+      case "kebab":
+        return input.split(' ').join('-');
+      case "title":
+        return input.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
+      case "vowel":
+        return input.replace(/[aeiou]/g, char => char.toUpperCase());
+      case "consonant":
+        return input.replace(/[^aeiou]/g, char => char.toUpperCase());
+      case "upper":
+        return input.toUpperCase();
+      case "lower":
+        return input.toLowerCase();
+      default:
+        return input;
+    }
+  };
+
+  if (Array.isArray(caze)) {
+    for (const casing of caze) {
+      input = applyCasing(input, casing);
+    }
+    return input;
+  } else {
+    return applyCasing(input, caze);
+  }
 };
+
+/*
+  Time Complexity: O(n * m), where n is the length of the input string and m is the number of casing options
+  Space Complexity: O(n)
+
+  REGEX REF: 
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Cheatsheet
+  
+*/
+
 
 console.log(makeCaze("this is a string", "camel")); // thisIsAString
 console.log(makeCaze("this is a string", "pascal")); // ThisIsAString
