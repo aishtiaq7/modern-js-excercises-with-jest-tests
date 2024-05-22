@@ -9,8 +9,19 @@ Create a function named repeatNumbers that will return a string with each of the
 */
 
 const repeatNumbers = function (data) {
-  // Put your solution here
+  let result = [];
+  for (const [value, count] of data) {
+    console.log('value - count');
+    console.log(value, count);
+    result.push(value.toString().repeat(count));
+  }
+  return result.join(", ");
 };
+
+/*
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+*/
 
 console.log(repeatNumbers([[1, 10]])); // 1111111111
 console.log(

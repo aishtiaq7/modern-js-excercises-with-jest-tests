@@ -8,8 +8,19 @@ Create a function named numberOfVowels that will receive a string and return the
 */
 
 const numberOfVowels = function (data) {
-  // Put your solution here
+  let count = 0;
+  const vowels = "aeiou";
+  for (const char of data.toLowerCase()) {
+    if (vowels.includes(char)) {
+      count += 1;
+    }
+  }
+  return count;
 };
+/*
+Time Complexity: O(n)
+Space Complexity: O(1)
+*/
 
 console.log(numberOfVowels("orange")); // 3
 console.log(numberOfVowels("cornerstone college")); // 7

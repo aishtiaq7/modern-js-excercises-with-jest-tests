@@ -20,8 +20,34 @@ Note: There may be multiple available spots for a particular vehicle. It does no
 */
 
 const whereCanIPark = function (spots, vehicle) {
-  // Code here!
+  const vehicleTypes = {
+    regular: ['R'],
+    small: ['R', 'S'],
+    motorcycle: ['R', 'S', 'M']
+  };
+
+  for (let y = 0; y < spots.length; y++) {
+    for (let x = 0; x < spots[y].length; x++) {
+      if (vehicleTypes[vehicle].includes(spots[y][x])) {
+        return [x, y];
+      }
+    }
+  }
+  return false;
 };
+/*  
+    Available spots are marked by CAPITAL letters only. Smaller letter means spot is booked.
+
+    The outer loop goes through each row of the parking lot.
+    The inner loop goes through each column within the current row.
+*/
+
+
+/*
+  Time Complexity: O(n*m)
+  Space Complexity: O(1)
+
+*/
 
 console.log(
   whereCanIPark(
